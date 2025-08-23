@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
+from .forms import SolicitacaoForm
+from .models import Beneficiario, Solicitacao
 
 
 def loginv(request):
@@ -31,7 +33,15 @@ def cadastro(request):
     return render(request, 'cadastro.html', {'form_cadastro': form})
 
 @login_required
-def autorizacao(request):
+def sol_autorizacao(request):
+    if request.method == 'POST':
+        form = SolicitacaoForm(request.POST)
+        if form.is_valid():
+            numero_carteirinha = form.cleaned_data['carteirinha_beneficiario']
+            try:
+                paciente_encontrado = Beneficiario.objects.get(carteirinha = numero_carteirinha)
+            except:
+                pass
     return render(request, 'autorizacao.html')
 
 def home(request):
