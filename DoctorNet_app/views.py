@@ -16,7 +16,7 @@ def loginv(request):
                 return redirect('autorizacao')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', {'form_login': form})
 
 def cadastro(request):
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def cadastro(request):
     else:
         form = UserCreationForm()
     
-    return render(request, 'cadastro.html', {'form': form})
+    return render(request, 'cadastro.html', {'form_cadastro': form})
 
 @login_required
 def autorizacao(request):

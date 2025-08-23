@@ -3,7 +3,7 @@
 <h1>Cadastro</h1>
 <form method="POST">
     {% csrf_token %}
-    {{form.as_p}}
+    {{form_cadastro.as_p}}
     <button type="submit">Enviar</button>
     <p><a href='{% url "login" %}'>Já tem uma conta? Faça Login</a></p>
 </form>
