@@ -12,7 +12,7 @@ class SolicitacaoForm(forms.ModelForm):
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(label = 'Usuário', widget=forms.TextInput(attrs={
             'class': 'form-input', 
-            'placeholder': 'Nome de usuário'
+            'placeholder': 'Usuário'
         }))
     password = forms.CharField(
         label='Senha',
