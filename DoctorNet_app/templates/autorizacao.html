@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block conteudo%}
+{%load static%}
+
+
+
+    <form method="POST" action="detalhe_autorizada" target=_blank>
+        {% csrf_token %}
+        {{sol_form.as_p}}
+        
+        <button type="submit" class="btn-login">Executar Solicitação</button>
+    </form>
+
+{%endblock conteudo%}
