@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    {%load static%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'DoctorNet_app/favicon.png' %}" type="image/png">
     <title>Document</title>
 </head>
 <body>
+    <div class = "container">
     {%block conteudo%}
     {%endblock conteudo%}
+    </div>
 </body>
+<style>
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: rgb(204, 204, 204);
+    justify-content: center;
+    align-items: center;
+}
+.formcard {
+    display: flex;             
+    flex-direction: column;    
+    align-items: center;       
+    background-color: white;
+    justify-content: center;
+    width: 300px;
+    height: 400px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px -3px black;
+    
+}
+.form-input {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+.form-input:hover {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+    
+}
+.form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btn-login{
+    background-color: rgb(47, 47, 255);
+    border-radius: 10px;
+    border: none;
+    width: 70px;
+    height: 30px;
+    font-size:15,5px;
+    color: white;
+}
+a:link{
+    color: black;
+    text-decoration: none;
+}
+a:visited{
+    color:black;
+    text-decoration: none;
+}
+a:hover {
+    color:grey;
+    transition: 0.3s ease-in-out;
+}
+.logo-login {
+    object-fit: contain;
+    height: 150px;
+    width: 250px;
+}
+</style>
 </html>

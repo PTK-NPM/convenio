@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SolicitacaoForm
+from .forms import SolicitacaoForm, CustomLoginForm
 from .models import Beneficiario, Solicitacao
 
 
 def loginv(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomLoginForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -17,7 +17,7 @@ def loginv(request):
                 login(request, user)
                 return redirect('autorizacao')
     else:
-        form = AuthenticationForm()
+        form = CustomLoginForm()
     return render(request, 'login.html', {'form_login': form})
 
 def cadastro(request):

@@ -107,6 +107,8 @@ class Solicitacao(models.Model):
         ANALISE = 'ANA', 'Em Análise'
         PENDENTE = 'PEN', 'Pendência'
     status = models.CharField('Status do Pedido', max_length = 3, choices = Status.choices)
+    data_solicitacao = models.DateField(auto_now_add = True)
+    numero_guia = models.CharField(max_length = 8, unique = True, blank = True)
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -115,6 +117,9 @@ class Solicitacao(models.Model):
             else:
                 self.status = self.Status.ANALISE
             super().save(*args, **kwargs)
+            if not self.numero_guia:
+                self.numero_guia = f'{self.id:06d}'
+                super().save(update_fields=['numero_guia'])
     
     def __str__(self):
         return f'{self.procedimento_solicitado} - {self.status}'
