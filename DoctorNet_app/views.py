@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -45,7 +45,7 @@ def sol_autorizacao(request):
                 solicitacao.credenciado = request.user 
                 solicitacao.save()
                 return redirect('detalhes_autorizada', pk=solicitacao.pk)
-            except Paciente.DoesNotExist:
+            except Beneficiario.DoesNotExist:
                 form.add_error('carteirinha_beneficiario', 'Nenhum beneficiário encontrado com este número de carteirinha.')
     else:
         form = SolicitacaoForm()
