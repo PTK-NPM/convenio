@@ -44,7 +44,7 @@ def sol_autorizacao(request):
                 solicitacao.beneficiario = paciente_encontrado
                 solicitacao.credenciado = request.user 
                 solicitacao.save()
-                return redirect('autorizada')
+                return redirect('detalhe_autorizada', pk=solicitacao.pk)
             except Paciente.DoesNotExist:
                 form.add_error('carteirinha_beneficiario', 'Nenhum beneficiário encontrado com este número de carteirinha.')
     else:
@@ -53,3 +53,11 @@ def sol_autorizacao(request):
 
 def home(request):
     return render(request,'index.html')
+
+@login_required
+def detalhe_autorizada(request, pk):
+    solicitacao_obj = get_object_or_404(Solicitacao, pk=pk)
+    context = {
+        'detalhe_solicitacao': solicitacao_obj
+    }
+    return render(request, 'detalhe_autorizada.html', context)
