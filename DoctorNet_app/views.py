@@ -35,14 +35,21 @@ def cadastro(request):
 @login_required
 def sol_autorizacao(request):
     if request.method == 'POST':
-        form = SolicitacaoForm(request.POST)
-        if form.is_valid():
+        form_autorizacao = SolicitacaoForm(request.POST)
+        if form_autorizacao.is_valid():
             numero_carteirinha = form.cleaned_data['carteirinha_beneficiario']
             try:
                 paciente_encontrado = Beneficiario.objects.get(carteirinha = numero_carteirinha)
-            except:
-                pass
-    return render(request, 'autorizacao.html')
+                solicitacao = form.save(commit=False)
+                solicitacao.beneficiario = paciente_encontrado
+                solicitacao.credenciado = request.user 
+                solicitacao.save()
+                return redirect('autorizada')
+            except Paciente.DoesNotExist:
+                form.add_error('carteirinha_beneficiario', 'Nenhum beneficiário encontrado com este número de carteirinha.')
+    else:
+        form = SolicitacaoForm()
+    return render(request, 'autorizacao.html', {'sol_form': form_autorizacao})
 
 def home(request):
     return render(request,'index.html')
