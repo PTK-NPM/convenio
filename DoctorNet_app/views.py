@@ -60,6 +60,7 @@ def sol_autorizacao(request):
                 profissional_solicitante = profissional_obj,
                 executante = executante_encontrado,
                 procedimento_solicitado = procedimento_encontrado,
+                quantidade_procedimento = procedimento_encontrado.quantidade_procedimento,
                 credenciado = request.user,
                 carater_solicitacao = form.cleaned_data['carater_solicitacao']
             )
