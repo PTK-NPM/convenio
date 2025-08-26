@@ -10,16 +10,30 @@
             <legend class='legend-autorizacao'> Dados do Beneficiário </legend>
             {{sol_form.carteirinha_beneficiario}}
         </fieldset>
+        
         <fieldset class='field-autorizacao'>
             <legend class='legend-autorizacao'> Dados do Profissional Solicitante </legend>
             {{sol_form.profissional_solicitante.nome}}
             {{sol_form.profissional_solicitante.tipo_conselho}}
-            {{sol_form.profissional_solicitante.conselho}}
+            {{sol_form.profissional_solicitante.codigo}}
             {{sol_form.profissional_solicitante.UFConselho}}
+            {{sol_form.profissional_solicitante.cbos}}
+        </fieldset>
+        
+        <fieldset class='field-autorizacao'>
+            <legend class='legend-autorizacao'> Dados do Executante </legend>
+            {{sol_form.executante.nome}}
+            {{sol_form.executante.codigo}}
+        </fieldset>
+
+        <fieldset class='field-autorizacao'>
+            <legend class='legend-autorizacao'>Procedimentos Solicitados</legend>
+            
         </fieldset>
         
         <button type="submit" >Executar Solicitação</button>
     </form>
 
 {%endblock conteudo%}
+
 
