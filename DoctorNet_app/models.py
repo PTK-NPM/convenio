@@ -101,7 +101,6 @@ class Solicitacao(models.Model):
     paciente = models.ForeignKey(Beneficiario, on_delete=models.PROTECT)
     profissional_solicitante = models.ForeignKey(ProfissionalSolicitante, on_delete=models.PROTECT)
     executante = models.ForeignKey(Executante, on_delete=models.PROTECT)
-    procedimento_solicitado = models.ForeignKey(Procedimento, on_delete=models.PROTECT)
     credenciado = models.ForeignKey(User, on_delete=models.PROTECT )
 
     class CaraterSolicitacao(models.TextChoices):
@@ -130,5 +129,13 @@ class Solicitacao(models.Model):
     
     def __str__(self):
         return f'{self.procedimento_solicitado} - {self.status}'
+
+class ItemSolicitacao(models.Model):
+    solicitacao = models.ForeignKey(Solicitacao, related_name='itens', on_delete=models.CASCADE)
+    procedimento = models.ForeignKey(Procedimento, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.procedimento.nome} (Qtd: {self.quantidade})"
 
     
