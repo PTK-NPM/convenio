@@ -78,5 +78,59 @@ a:hover {
     height: 150px;
     width: 250px;
 }
+
+.field-autorizacao {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px; /* Espaço entre os fieldsets */
+}
+
+.field-autorizacao legend {
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 1.2em; /* Título do grupo maior */
+  color: #333;
+}
+
+
+/* --- Estilos para CADA CAMPO individual (a caixinha interna) --- */
+
+/* O contêiner de cada input + label */
+.input-container {
+  position: relative;
+  margin-top: 25px; /* Espaçamento entre os campos dentro do fieldset */
+}
+
+/* O campo de input */
+.input-container input {
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box; /* Garante que padding não afete a largura total */
+}
+
+/* O rótulo que "corta" a borda */
+.input-container label {
+  position: absolute;
+  top: -10px; /* Move para cima */
+  left: 10px; /* Afasta da esquerda */
+  background-color: #fff; /* ESSENCIAL: Mesma cor do fundo do fieldset */
+  padding: 0 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Opcional: Efeito visual quando o campo está em foco */
+.input-container input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.input-container input:focus + label {
+  color: #007bff;
+}
 </style>
 </html>
