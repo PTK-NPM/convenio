@@ -6,9 +6,20 @@
 
     <form method="POST" action="" target=_blank>
         {% csrf_token %}
-        {{sol_form.carteirinha_beneficiario}}
+        <fieldset class='field-autorizacao'>
+            <legend class='legend-autorizacao'> Dados do Beneficiário </legend>
+            {{sol_form.carteirinha_beneficiario}}
+        </fieldset>
+        <fieldset class='field-autorizacao'>
+            <legend class='legend-autorizacao'> Dados do Profissional Solicitante </legend>
+            {{sol_form.profissional_solicitante.nome}}
+            {{sol_form.profissional_solicitante.tipo_conselho}}
+            {{sol_form.profissional_solicitante.conselho}}
+            {{sol_form.profissional_solicitante.UFConselho}}
+        </fieldset>
         
         <button type="submit" >Executar Solicitação</button>
     </form>
 
 {%endblock conteudo%}
+
