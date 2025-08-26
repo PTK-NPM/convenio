@@ -26,14 +26,71 @@
             {{sol_form.executante.codigo}}
         </fieldset>
 
-        <fieldset class='field-autorizacao'>
-            <legend class='legend-autorizacao'>Procedimentos Solicitados</legend>
+<!--         <fieldset class='field-autorizacao'>
+            <h3>Procedimentos</h3>
+
+    {{ formset.management_form }}
+
+    <div id="procedimentos-container">
+        {% for form in formset %}
+            <div class="procedimento-form form-row align-items-end mb-2">
+                <div class="col">
+                    {{ form.codigo_procedimento.label_tag }}
+                    {{ form.codigo_procedimento }}
+                    {{ form.codigo_procedimento.errors }}
+                </div>
+                <div class="col">
+                    {{ form.quantidade.label_tag }}
+                    {{ form.quantidade }}
+                    {{ form.quantidade.errors }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="empty-form" style="display: none;">
+        <div class="procedimento-form form-row align-items-end mb-2">
+            <div class="col">
+                {{ formset.empty_form.codigo_procedimento.label_tag }}
+                {{ formset.empty_form.codigo_procedimento }}
+            </div>
+            <div class="col">
+                {{ formset.empty_form.quantidade.label_tag }}
+                {{ formset.empty_form.quantidade }}
+            </div>
+        </div>
+    </div>
+
+    <button type="button" id="add-form-btn" class="btn btn-secondary mt-2">Adicionar Procedimento</button>
+    <hr>
             
-        </fieldset>
+        </fieldset> -->
         
         <button type="submit" >Executar Solicitação</button>
     </form>
 
 {%endblock conteudo%}
+
+<script>
+document.getElementById('add-form-btn').addEventListener('click', function() {
+    // Pega o número total de formulários que já existem
+    const totalFormsInput = document.getElementById('id_procedimentos-TOTAL_FORMS');
+    const currentFormCount = parseInt(totalFormsInput.value, 10);
+
+    // Pega o HTML do nosso molde
+    const emptyFormHtml = document.getElementById('empty-form').innerHTML;
+    
+    // Substitui o prefixo padrão pelo índice do novo formulário
+    const newFormHtml = emptyFormHtml.replace(/__prefix__/g, currentFormCount);
+
+    // Insere o novo formulário no container
+    const formContainer = document.getElementById('procedimentos-container');
+    formContainer.insertAdjacentHTML('beforeend', newFormHtml);
+    
+    // Atualiza o contador de formulários no management form
+    totalFormsInput.value = currentFormCount + 1;
+});
+</script>
+
 
 
