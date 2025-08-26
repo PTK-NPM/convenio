@@ -17,7 +17,7 @@ class Beneficiario(models.Model):
             super().save(update_fields=['carteirinha'])
 
 class Procedimento(models.Model):
-    codigo = models.CharField("Código do procedimento", max_length = 8, unique = True)
+    codigo_procedimento = models.CharField("Código do procedimento", max_length = 8, unique = True)
     nome = models.CharField("Nome", max_length = 250)
     class Categoria(models.TextChoices):
         IMAGEM = 'IMG', 'Exame de Imagem'
@@ -74,7 +74,7 @@ class ProfissionalSolicitante(models.Model):
         Sergipe = 'SE', 'SE'
         Tocantins = 'TO', 'TO'
     
-    conselho = models.CharField('Conselho do Profissional', max_length = 3, choices = Conselho.choices)
+    tipo_conselho = models.CharField('Conselho do Profissional', max_length = 3, choices = Conselho.choices)
     UF_Conselho = models.CharField('UF do Conselho', max_length = 2, choices = UFConselho.choices)
     codigo = models.CharField('Código do Profissional Solicitante', max_length = 20, unique = True)
     cbos = models.ForeignKey(CBOs, on_delete=models.PROTECT)
@@ -86,9 +86,15 @@ class ProfissionalSolicitante(models.Model):
 class Executante(models.Model):
     CNPJ = models.CharField(max_length = 14, unique = True)
     nome = models.CharField(max_length = 50)
+    codigo = models.CharField(max_length = 5, unique = True, blank = True, editable = False)
 
     def __str__(self):
         return self.nome
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.codigo:
+            self.codigo = f'{self.id:05d}'
+            super().save(update_fields=['codigo'])
 
 class Solicitacao(models.Model):
     paciente = models.ForeignKey(Beneficiario, on_delete=models.PROTECT)

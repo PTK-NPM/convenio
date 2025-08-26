@@ -4,11 +4,11 @@
 
 
 
-    <form method="POST" action="detalhe_autorizada" target=_blank>
+    <form method="POST" action="" target=_blank>
         {% csrf_token %}
-        {{sol_form.as_p}}
+        {{sol_form.carteirinha_beneficiario}}
         
-        <button type="submit" class="btn-login">Executar Solicitação</button>
+        <button type="submit" >Executar Solicitação</button>
     </form>
 
 {%endblock conteudo%}

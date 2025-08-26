@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import SolicitacaoForm, CustomLoginForm
-from .models import Beneficiario, Solicitacao
+from .models import Beneficiario, Solicitacao, Executante, Procedimento, ProfissionalSolicitante
 
 
 def loginv(request):
@@ -35,28 +35,54 @@ def cadastro(request):
 @login_required
 def sol_autorizacao(request):
     if request.method == 'POST':
-        form_autorizacao = SolicitacaoForm(request.POST)
-        if form_autorizacao.is_valid():
+        form = SolicitacaoForm(request.POST)
+        if form.is_valid():
             numero_carteirinha = form.cleaned_data['carteirinha_beneficiario']
+            codigo_executante = form.cleaned_data['codigo_operadora']
+            procedimento_codigo = form.cleaned_data['procedimento']
+            codigo_conselho = form.cleaned_data['codigo_conselho']
+            defaults_profissional = {
+                'nome_profissional': form.cleaned_data['nome_profissional'],
+                'tipo_conselho': form.cleaned_data['conselho'],
+                'UF_Conselho': form.cleaned_data['UF_Conselho'],
+                'cbos': form.cleaned_data['cbos']
+            }
+            profissional_obj, created = ProfissionalSolicitante.objects.get_or_create(
+                codigo = codigo_conselho,
+                defaults = defaults_profissional
+            )
             try:
                 paciente_encontrado = Beneficiario.objects.get(carteirinha = numero_carteirinha)
-                solicitacao = form.save(commit=False)
-                solicitacao.beneficiario = paciente_encontrado
-                solicitacao.credenciado = request.user 
-                solicitacao.save()
-                return redirect('detalhes_autorizada', pk=solicitacao.pk)
+                executante_encontrado = Executante.objects.get(codigo = codigo_executante)
+                procedimento_encontrado = Procedimento.objects.get(codigo_procedimento = procedimento_codigo)
+                nova_solicitacao = Solicitacao.objects.create(
+                paciente = paciente_encontrado,
+                profissional_solicitante = profissional_obj,
+                executante = executante_encontrado,
+                procedimento_solicitado = procedimento_encontrado,
+                credenciado = request.user,
+                carater_solicitacao = form.cleaned_data['carater_solicitacao']
+            )
+            
+                return redirect('detalhes_autorizada', id=nova_solicitacao.pk)
             except Beneficiario.DoesNotExist:
                 form.add_error('carteirinha_beneficiario', 'Nenhum beneficiário encontrado com este número de carteirinha.')
+            except Executante.DoesNotExist:
+                form.add_error('codigo_operadora', 'Nenhum executante encontrado.')
+            except Procedimento.DoesNotExist:
+                form.add_error('procedimento', 'Nenhum procedimento encontrado.')
+
+            
     else:
         form = SolicitacaoForm()
-    return render(request, 'autorizacao.html', {'sol_form': form_autorizacao})
+    return render(request, 'autorizacao.html', {'sol_form': form})
 
 def home(request):
     return render(request,'index.html')
 
 @login_required
-def detalhes_autorizada(request, pk):
-    solicitacao_obj = get_object_or_404(Solicitacao, pk=pk)
+def detalhes_autorizada(request, id):
+    solicitacao_obj = get_object_or_404(Solicitacao, pk=id)
     context = {
         'detalhes_autorizada': solicitacao_obj
     }
