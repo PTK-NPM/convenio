@@ -44,6 +44,7 @@ class SolicitacaoForm(forms.Form):
         required = True
     )
     carater_solicitacao = forms.ChoiceField(
+        widgets = forms.RadioSelect(attrs={'class': 'radio-button-group'})
         label = 'Caráter de Solicitação',
         choices = Solicitacao.CaraterSolicitacao.choices
     )
