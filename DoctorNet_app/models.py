@@ -19,6 +19,7 @@ class Beneficiario(models.Model):
 class Procedimento(models.Model):
     codigo_procedimento = models.CharField("Código do procedimento", max_length = 8, unique = True)
     nome = models.CharField("Nome", max_length = 250)
+    quantidade_procedimento = models.Charfield("Quantidade", max_length = 2, required = True)
     class Categoria(models.TextChoices):
         IMAGEM = 'IMG', 'Exame de Imagem'
         LABORATORIAL = 'LAB', 'Exame Laboratorial'
