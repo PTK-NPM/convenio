@@ -40,6 +40,7 @@ def sol_autorizacao(request):
             numero_carteirinha = form.cleaned_data['carteirinha_beneficiario']
             codigo_executante = form.cleaned_data['codigo_operadora']
             procedimento_codigo = form.cleaned_data['procedimento']
+            quantidade_solicitada = form.cleaned_data['quantidade_procedimento']
             codigo_conselho = form.cleaned_data['codigo_conselho']
             defaults_profissional = {
                 'nome_profissional': form.cleaned_data['nome_profissional'],
@@ -60,7 +61,7 @@ def sol_autorizacao(request):
                 profissional_solicitante = profissional_obj,
                 executante = executante_encontrado,
                 procedimento_solicitado = procedimento_encontrado,
-                quantidade_procedimento = procedimento_encontrado.quantidade_procedimento,
+                quantidade_procedimento = quantidade_solicitada,
                 credenciado = request.user,
                 carater_solicitacao = form.cleaned_data['carater_solicitacao']
             )
