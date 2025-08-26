@@ -43,6 +43,11 @@ class SolicitacaoForm(forms.Form):
         max_length= 20,
         required = True
     )
+    quantidade_procedimento = forms.CharField(
+        label= 'Quantidade',
+        max_length= 2,
+        required = True
+    )
     carater_solicitacao = forms.ChoiceField(
         widgets = forms.RadioSelect(attrs={'class': 'radio-button-group'})
         label = 'Caráter de Solicitação',
