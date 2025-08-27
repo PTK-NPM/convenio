@@ -3,30 +3,58 @@
 {%load static%}
 
 
-
+<div class="test1">
     <form method="POST" action="" target=_blank>
         {% csrf_token %}
         <fieldset class='field-autorizacao'>
             <legend class='legend-autorizacao'> Dados do Beneficiário </legend>
-            {{sol_form.carteirinha_beneficiario}}
+            <div class="input-container">
+                {{sol_form.carteirinha_beneficiario.label_tag}}
+                {{sol_form.carteirinha_beneficiario}}
+            </div>
         </fieldset>
         
         <fieldset class='field-autorizacao'>
             <legend class='legend-autorizacao'> Dados do Profissional Solicitante </legend>
-            {{sol_form.profissional_solicitante.nome}}
-            {{sol_form.profissional_solicitante.tipo_conselho}}
-            {{sol_form.profissional_solicitante.codigo}}
-            {{sol_form.profissional_solicitante.UFConselho}}
-            {{sol_form.profissional_solicitante.cbos}}
+            <div class="input-container">
+            {{sol_form.nome_profissional.label_tag}}
+            {{sol_form.nome_profissional}}
+            </div>
+            <p>
+            <div class="input-container">
+            {{sol_form.conselho.label_tag}}
+            {{sol_form.conselho}}
+            </div>
+            
+            <p>
+            <div class="input-container">
+            {{sol_form.codigo_conselho.label_tag}}
+            {{sol_form.codigo_conselho}}
+            </div>
+            <p>
+            <div class="input-container">               
+            {{sol_form.UF_Conselho.label_tag}}
+            {{sol_form.UF_Conselho}}
+            </div>
+            <p>
+            <div class="input-container">
+            {{sol_form.cbos.label_tag}}
+            {{sol_form.cbos}}
+            </div>
+            <p>
+            
+            
         </fieldset>
         
         <fieldset class='field-autorizacao'>
             <legend class='legend-autorizacao'> Dados do Executante </legend>
-            {{sol_form.executante.nome}}
-            {{sol_form.executante.codigo}}
+            <div class="input-container">
+            {{sol_form.codigo_operadora.label_tag}}
+            {{sol_form.codigo_operadora }}
+            </div>
         </fieldset>
 
-<!--         <fieldset class='field-autorizacao'>
+         <fieldset class='field-autorizacao'>
             <h3>Procedimentos</h3>
 
     {{ formset.management_form }}
@@ -40,12 +68,13 @@
                     {{ form.codigo_procedimento.errors }}
                 </div>
                 <div class="col">
-                    {{ form.quantidade.label_tag }}
-                    {{ form.quantidade }}
-                    {{ form.quantidade.errors }}
+                    {{ form.quantidade_procedimento.label_tag }}
+                    {{ form.quantidade_procedimento }}
+                    {{ form.quantidade_procedimento.errors }}
                 </div>
             </div>
         {% endfor %}
+        
     </div>
 
     <div id="empty-form" style="display: none;">
@@ -55,42 +84,22 @@
                 {{ formset.empty_form.codigo_procedimento }}
             </div>
             <div class="col">
-                {{ formset.empty_form.quantidade.label_tag }}
-                {{ formset.empty_form.quantidade }}
+                {{ formset.empty_form.quantidade_procedimento.label_tag }}
+                {{ formset.empty_form.quantidade_procedimento }}
             </div>
         </div>
     </div>
 
     <button type="button" id="add-form-btn" class="btn btn-secondary mt-2">Adicionar Procedimento</button>
-    <hr>
-            
-        </fieldset> -->
+    {{sol_form.carater_solicitacao}}
+    <hr>   
+        </fieldset> 
         
         <button type="submit" >Executar Solicitação</button>
     </form>
-
+</div>
 {%endblock conteudo%}
 
-<script>
-document.getElementById('add-form-btn').addEventListener('click', function() {
-    // Pega o número total de formulários que já existem
-    const totalFormsInput = document.getElementById('id_procedimentos-TOTAL_FORMS');
-    const currentFormCount = parseInt(totalFormsInput.value, 10);
-
-    // Pega o HTML do nosso molde
-    const emptyFormHtml = document.getElementById('empty-form').innerHTML;
-    
-    // Substitui o prefixo padrão pelo índice do novo formulário
-    const newFormHtml = emptyFormHtml.replace(/__prefix__/g, currentFormCount);
-
-    // Insere o novo formulário no container
-    const formContainer = document.getElementById('procedimentos-container');
-    formContainer.insertAdjacentHTML('beforeend', newFormHtml);
-    
-    // Atualiza o contador de formulários no management form
-    totalFormsInput.value = currentFormCount + 1;
-});
-</script>
 
 
 

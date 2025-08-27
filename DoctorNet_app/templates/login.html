@@ -1,16 +1,17 @@
 {%extends 'base.html'%}
 {%block conteudo%}
 {%load static%}
-
-<div class="formcard">
-    <img src="{%static 'DoctorNet_app/doctornetlogo.png'%}" class="logo-login">
-    <form method="POST" class="form-login">
-        {% csrf_token %}
-        {{form_login.username}}
-        {{form_login.password}}
-        <br>
-        <button type="submit" class="btn-login">Entrar</button>
-        <p><a href='{% url "cadastro" %}'>Primeiro acesso? Cadastre-se</a></p>
-    </form>
+<div class="container">
+    <div class="formcard">
+        <img src="{%static 'DoctorNet_app/doctornetlogo.png'%}" class="logo-login">
+        <form method="POST" class="form-login">
+            {% csrf_token %}
+            {{form_login.username}}
+            {{form_login.password}}
+            <br>
+            <button type="submit" class="btn-login">Entrar</button>
+            <p><a href='{% url "cadastro" %}'>Primeiro acesso? Cadastre-se</a></p>
+        </form>
+    </div>
 </div>
 {%endblock conteudo%}

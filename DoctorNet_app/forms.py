@@ -8,13 +8,17 @@ class SolicitacaoForm(forms.Form):
         max_length = 8, 
         required = True,
         widget = forms.TextInput(attrs= {
-            'placeholder': 'Número da Carteirinha',
+            'placeholder': 'Digite o número da carteirinha',
             'class' : 'form-input'
         })
     )
     nome_profissional = forms.CharField(
         label='Nome do Profissional Solicitante', 
-        max_length=100
+        max_length=100,
+        widget = forms.TextInput(attrs= {
+            'placeholder': 'Digite o nome do profissional',
+            'class' : 'form-input'
+        })
     )
     conselho = forms.ChoiceField(
         label='Conselho', 
@@ -26,7 +30,11 @@ class SolicitacaoForm(forms.Form):
     )
     codigo_conselho = forms.CharField(
         label='Código do Conselho Profissional', 
-        max_length=20
+        max_length=20,
+        widget = forms.TextInput(attrs= {
+            'placeholder': 'Digite o código do conselho',
+            'class' : 'form-input'
+        })
     )
     cbos = forms.ModelChoiceField(
         label='CBOs do Profissional',
@@ -36,10 +44,14 @@ class SolicitacaoForm(forms.Form):
     codigo_operadora = forms.CharField(
         label = 'Código do executante', 
         max_length = 10, 
-        required = True
+        required = True,
+        widget = forms.TextInput(attrs= {
+            'placeholder': 'Digite o código do prestador',
+            'class' : 'form-input'
+        })
     )
     carater_solicitacao = forms.ChoiceField(
-        widgets = forms.RadioSelect(attrs={'class': 'radio-button-group'})
+        widget = forms.RadioSelect(attrs={'class': 'radio-button-group'}),
         label = 'Caráter de Solicitação',
         choices = Solicitacao.CaraterSolicitacao.choices
     )

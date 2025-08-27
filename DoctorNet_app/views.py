@@ -1,3 +1,4 @@
+from django.forms import formset_factory
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -42,8 +43,6 @@ def sol_autorizacao(request):
         if form.is_valid() and formset.is_valid():
             numero_carteirinha = form.cleaned_data['carteirinha_beneficiario']
             codigo_executante = form.cleaned_data['codigo_operadora']
-            procedimento_codigo = form.cleaned_data['procedimento']
-            quantidade_solicitada = form.cleaned_data['quantidade_procedimento']
             codigo_conselho = form.cleaned_data['codigo_conselho']
             
             defaults_profissional = {
@@ -66,25 +65,22 @@ def sol_autorizacao(request):
                 credenciado = request.user,
                 carater_solicitacao = form.cleaned_data['carater_solicitacao']
             )
-                 for form_procedimento in formset:
-                        if form_procedimento.has_changed(): # Processa apenas se preenchido
-                            procedimento_codigo = form_procedimento.cleaned_data['codigo_procedimento']
-                            quantidade_solicitada = form_procedimento.cleaned_data['quantidade']
+                for form_procedimento in formset:
+                    if form_procedimento.has_changed():
+                        procedimento_codigo = form_procedimento.cleaned_data['codigo_procedimento']
+                        quantidade_solicitada = form_procedimento.cleaned_data['quantidade']
                             
-                            # Use um try/except dentro do loop para erros de procedimento
-                            try:
-                                procedimento_encontrado = Procedimento.objects.get(codigo_procedimento=procedimento_codigo)
+                        try:
+                            procedimento_encontrado = Procedimento.objects.get(codigo_procedimento=procedimento_codigo)
                                 
-                                ItemSolicitacao.objects.create(
-                                    solicitacao=nova_solicitacao,
-                                    procedimento=procedimento_encontrado,
-                                    quantidade=quantidade_solicitada
-                                )
-                            except Procedimento.DoesNotExist:
-                                # Adiciona o erro ao campo específico do formset que falhou
+                            ItemSolicitacao.objects.create(
+                                solicitacao=nova_solicitacao,
+                                procedimento=procedimento_encontrado,
+                                quantidade=quantidade_solicitada)
+                            
+                        except Procedimento.DoesNotExist:
                                 form_procedimento.add_error('codigo_procedimento', 'Código de procedimento inválido.')
-                                # Se um falhar, temos que parar e mostrar os erros
-                                # Re-renderiza a página com os formulários preenchidos e os erros
+
                 return redirect('detalhes_autorizada', id=nova_solicitacao.pk)
             except Beneficiario.DoesNotExist:
                 form.add_error('carteirinha_beneficiario', 'Nenhum beneficiário encontrado com este número de carteirinha.')
@@ -97,7 +93,7 @@ def sol_autorizacao(request):
     else:
         form = SolicitacaoForm()
         formset = ProcedimentoFormSet(prefix='procedimentos')
-    return render(request, 'autorizacao.html', {'sol_form': form, 'form_procedimento': formset})
+    return render(request, 'autorizacao.html', {'sol_form': form, 'formset': formset})
 
 def home(request):
     return render(request,'index.html')
