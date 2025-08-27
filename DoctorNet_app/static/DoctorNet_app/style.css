@@ -81,9 +81,18 @@ body{
   background-color: white; 
 }
 
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaço entre os campos */
+    margin-bottom: 16px; /* Espaço abaixo da linha */
+}
+
 .input-container {
   position: relative;
-  margin-top: 2px; 
+  margin-top: 2px;
+  flex: 1; /* Faz com que cada grupo ocupe o espaço disponível igualmente */
+  display: flex;
+  flex-direction: column; /* Coloca o label em cima do input */
 }
 
 .input-container input {
@@ -111,5 +120,28 @@ body{
   border-color: #007bff;
 }
 
+/* ESTILIZAÇÃO DO SELECT */
+.select-wrapper {
+    position: relative;
+}
 
+/* A seta customizada */
+.select-wrapper::after {
+    content: '▼';
+    font-size: 12px;
+    color: #718096;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Permite que o clique passe através da seta e atinja o select */
+}
+
+/* REMOVE A APARÊNCIA PADRÃO DO SELECT */
+select {
+    -webkit-appearance: none; /* Remove a seta padrão no Chrome/Safari */
+    -moz-appearance: none;    /* Remove a seta padrão no Firefox */
+    appearance: none;         /* Remove a seta padrão em navegadores modernos */
+    padding-right: 30px;      /* Adiciona espaço à direita para nossa nova seta não sobrepor o texto */
+}
 
