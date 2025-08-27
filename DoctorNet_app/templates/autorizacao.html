@@ -23,8 +23,10 @@
                 </div>
                 
                 <div class="input-container">
-                {{sol_form.conselho.label_tag}}
-                {{sol_form.conselho}}
+                    {{sol_form.conselho.label_tag}}
+                    <div class="select-wrapper">
+                        {{sol_form.conselho}}
+                    </div>
                 </div>
                 
                 
@@ -34,13 +36,17 @@
                 </div>
                 
                 <div class="input-container">               
-                {{sol_form.UF_Conselho.label_tag}}
-                {{sol_form.UF_Conselho}}
+                    {{sol_form.UF_Conselho.label_tag}}
+                    <div class="select-wrapper">  
+                        {{sol_form.UF_Conselho}}
+                    </div>
                 </div>
                 
                 <div class="input-container">
-                {{sol_form.cbos.label_tag}}
-                {{sol_form.cbos}}
+                    {{sol_form.cbos.label_tag}}
+                    <div class="select-wrapper">
+                        {{sol_form.cbos}}
+                    </div>
                 </div>
             </div>
             
@@ -101,6 +107,7 @@
     </form>
 </div>
 {%endblock conteudo%}
+
 
 
 
