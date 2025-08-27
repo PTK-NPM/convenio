@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'DoctorNet_app/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'DoctorNet_app/style.css' %}">
     
     <title>Document</title>
 </head>
@@ -14,139 +15,7 @@
     {%endblock conteudo%}
     
 </body>
-<style>
-.container {
-    display: flex;
-    height: 100vh;
-    background-color: rgb(204, 204, 204);
-    justify-content: center;
-    align-items: center;
-}
-.formcard {
-    display: flex;             
-    flex-direction: column;    
-    align-items: center;       
-    background-color: white;
-    justify-content: center;
-    width: 300px;
-    height: 400px;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 15px -3px black;
-    
-}
-.form-input {
-    width: 200px;
-    height: 30px;
-    margin-bottom: 2px;
-}
 
-
-.form-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.btn-login{
-    background-color: #1a4381;
-    border-radius: 10px;
-    border: none;
-    width: 70px;
-    height: 30px;
-    font-size:15,5px;
-    color: white;
-    cursor: pointer;
-}
-a:link{
-    color: black;
-    text-decoration: none;
-}
-a:visited{
-    color:black;
-    text-decoration: none;
-}
-a:hover {
-    color:grey;
-    transition: 0.3s ease-in-out;
-}
-.logo-login {
-    object-fit: contain;
-    height: 150px;
-    width: 250px;
-}
-
-.field-autorizacao {
-  border: 1px solid white;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 25px; /* Espaço entre os fieldsets */
-  background-color: white; 
-}
-.field-autorizacao:hover {
-  border: 1px solid #1a4381;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 25px; /* Espaço entre os fieldsets */
-  background-color: white; 
-}
-
-.field-autorizacao legend {
-    color: white;
-    font-size: 15px;
-    background-color: #1a4381;
-    box-shadow: 0px 0px 8px 1px black;
-    border-radius: 4px;
-    padding: 0 10px;
-}
-.test{
-  background-color: rgb(176, 176, 176);
-  display: flex;
-  margin-left: 300px;
-}
-body{
-  background-color: rgb(176, 176, 176);
-}
-
-/* --- Estilos para CADA CAMPO individual (a caixinha interna) --- */
-
-/* O contêiner de cada input + label */
-.input-container {
-  position: relative;
-  margin-top: 2px; /* Espaçamento entre os campos dentro do fieldset */
-}
-
-/* O campo de input */
-.input-container input {
-  border: 1px solid #999;
-  border-radius: 5px;
-  padding: 12px;
-  width: 100%;
-  font-size: 10px;
-  box-sizing: border-box; /* Garante que padding não afete a largura total */
-}
-
-/* O rótulo que "corta" a borda */
-.input-container label {
-  position: absolute;
-  top: -10px; /* Move para cima */
-  left: 10px; /* Afasta da esquerda */
-  background-color: #fff; /* ESSENCIAL: Mesma cor do fundo do fieldset */
-  padding: 0 5px;
-  font-size: 14px;
-  color: #555;
-}
-
-/* Opcional: Efeito visual quando o campo está em foco */
-.input-container input:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-.input-container input:focus + label {
-  color: #007bff;
-}
-</style>
 <script>
 document.getElementById('add-form-btn').addEventListener('click', function() {
     // Pega o número total de formulários que já existem
