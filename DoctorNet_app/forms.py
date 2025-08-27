@@ -55,6 +55,12 @@ class SolicitacaoForm(forms.Form):
         label = 'Caráter de Solicitação',
         choices = Solicitacao.CaraterSolicitacao.choices
     )
+    
+    indicacao = forms.CharField(
+        label = 'Indicação Clínica', 
+        max_length = 8, 
+        required = True
+    )
 
 
 class ProcedimentoSolicitadoForm(forms.Form):
