@@ -15,31 +15,33 @@
         </fieldset>
         
         <fieldset class='field-autorizacao'>
-            <h2> Dados do Profissional Solicitante </h2>
-            <div class="input-container">
-            {{sol_form.nome_profissional.label_tag}}
-            {{sol_form.nome_profissional}}
-            </div>
-            
-            <div class="input-container">
-            {{sol_form.conselho.label_tag}}
-            {{sol_form.conselho}}
-            </div>
-            
-            
-            <div class="input-container">
-            {{sol_form.codigo_conselho.label_tag}}
-            {{sol_form.codigo_conselho}}
-            </div>
-            
-            <div class="input-container">               
-            {{sol_form.UF_Conselho.label_tag}}
-            {{sol_form.UF_Conselho}}
-            </div>
-            
-            <div class="input-container">
-            {{sol_form.cbos.label_tag}}
-            {{sol_form.cbos}}
+            <div class='form-row'>
+                <h2> Dados do Profissional Solicitante </h2>
+                <div class="input-container">
+                {{sol_form.nome_profissional.label_tag}}
+                {{sol_form.nome_profissional}}
+                </div>
+                
+                <div class="input-container">
+                {{sol_form.conselho.label_tag}}
+                {{sol_form.conselho}}
+                </div>
+                
+                
+                <div class="input-container">
+                {{sol_form.codigo_conselho.label_tag}}
+                {{sol_form.codigo_conselho}}
+                </div>
+                
+                <div class="input-container">               
+                {{sol_form.UF_Conselho.label_tag}}
+                {{sol_form.UF_Conselho}}
+                </div>
+                
+                <div class="input-container">
+                {{sol_form.cbos.label_tag}}
+                {{sol_form.cbos}}
+                </div>
             </div>
             
             
@@ -99,6 +101,7 @@
     </form>
 </div>
 {%endblock conteudo%}
+
 
 
 
