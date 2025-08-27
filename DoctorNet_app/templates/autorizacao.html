@@ -61,52 +61,56 @@
             {{sol_form.codigo_operadora }}
             </div>
         </fieldset>
-
-         <fieldset class='field-autorizacao'>
-            <h2>Procedimentos</h2>
-
-    {{ formset.management_form }}
-
-    <div id="procedimentos-container">
-        {% for form in formset %}
-            <div class="procedimento-form form-row align-items-end mb-2">
-                <div class="col">
-                    {{ form.codigo_procedimento.label_tag }}
-                    {{ form.codigo_procedimento }}
-                    {{ form.codigo_procedimento.errors }}
+        <fieldset class='field-autorizacao'>
+            <div id='radio-button'>
+                {{sol_form.carater_solicitacao.label_tag}}
+                {{sol_form.carater_solicitacao}}
+            </div>
+        </fieldset>
+        <fieldset class='field-autorizacao'>
+                <h2>Procedimentos</h2>
+                {{ formset.management_form }}
+            
+                <div id="procedimentos-container">
+                    {% for form in formset %}
+                        <div class="procedimento-form form-row align-items-end mb-2">
+                            <div class="col">
+                                {{ form.codigo_procedimento.label_tag }}
+                                {{ form.codigo_procedimento }}
+                                {{ form.codigo_procedimento.errors }}
+                            </div>
+                            <div class="col">
+                                {{ form.quantidade_procedimento.label_tag }}
+                                {{ form.quantidade_procedimento }}
+                                {{ form.quantidade_procedimento.errors }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
                 </div>
-                <div class="col">
-                    {{ form.quantidade_procedimento.label_tag }}
-                    {{ form.quantidade_procedimento }}
-                    {{ form.quantidade_procedimento.errors }}
+            
+                <div id="empty-form" style="display: none;">
+                    <div class="procedimento-form form-row align-items-end mb-2">
+                        <div class="col">
+                            {{ formset.empty_form.codigo_procedimento.label_tag }}
+                            {{ formset.empty_form.codigo_procedimento }}
+                        </div>
+                        <div class="col">
+                            {{ formset.empty_form.quantidade_procedimento.label_tag }}
+                            {{ formset.empty_form.quantidade_procedimento }}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-        
-    </div>
-
-    <div id="empty-form" style="display: none;">
-        <div class="procedimento-form form-row align-items-end mb-2">
-            <div class="col">
-                {{ formset.empty_form.codigo_procedimento.label_tag }}
-                {{ formset.empty_form.codigo_procedimento }}
-            </div>
-            <div class="col">
-                {{ formset.empty_form.quantidade_procedimento.label_tag }}
-                {{ formset.empty_form.quantidade_procedimento }}
-            </div>
-        </div>
-    </div>
-
-    <button type="button" id="add-form-btn" class="btn btn-secondary mt-2">Adicionar Procedimento</button>
-    {{sol_form.carater_solicitacao}}
-    <hr>   
+            
+                <button type="button" id="add-form-btn" class="btn btn-secondary mt-2">Adicionar Procedimento</button>
+                <hr>  
+                <button type="submit" >Executar Solicitação</button>
         </fieldset> 
-        
-        <button type="submit" >Executar Solicitação</button>
-    </form>
+                    
+                </form>
 </div>
 {%endblock conteudo%}
+
 
 
 
