@@ -25,7 +25,7 @@ class SolicitacaoForm(forms.Form):
         choices=ProfissionalSolicitante.Conselho.choices
     )
     UF_Conselho = forms.ChoiceField(
-        label='UF do Conselho', 
+        label='UF', 
         choices=ProfissionalSolicitante.UFConselho.choices
     )
     codigo_conselho = forms.CharField(
@@ -37,7 +37,7 @@ class SolicitacaoForm(forms.Form):
         })
     )
     cbos = forms.ModelChoiceField(
-        label='CBOs do Profissional',
+        label='CBO-S',
         queryset=CBOs.objects.all(), 
         required=True
     )

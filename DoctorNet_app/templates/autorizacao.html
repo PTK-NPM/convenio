@@ -15,14 +15,14 @@
         </fieldset>
         
         <fieldset class='field-autorizacao'>
-            <div class='form-row'>
+            
                 <h2> Dados do Profissional Solicitante </h2>
                 <div class="input-container">
                 {{sol_form.nome_profissional.label_tag}}
                 {{sol_form.nome_profissional}}
                 </div>
-                
-                <div class="input-container">
+            <div class='form-row'>   
+                <div class="input-container1">
                     {{sol_form.conselho.label_tag}}
                     <div class="select-wrapper">
                         {{sol_form.conselho}}
@@ -30,19 +30,19 @@
                 </div>
                 
                 
-                <div class="input-container">
-                {{sol_form.codigo_conselho.label_tag}}
+                <div class="input-container2">
+                
                 {{sol_form.codigo_conselho}}
                 </div>
                 
-                <div class="input-container">               
+                <div class="input-container1">               
                     {{sol_form.UF_Conselho.label_tag}}
                     <div class="select-wrapper">  
                         {{sol_form.UF_Conselho}}
                     </div>
                 </div>
                 
-                <div class="input-container">
+                <div class="input-container1">
                     {{sol_form.cbos.label_tag}}
                     <div class="select-wrapper">
                         {{sol_form.cbos}}
@@ -56,14 +56,15 @@
         
         <fieldset class='field-autorizacao'>
             <h2> Dados do Executante </h2>
+            <p>
             <div class="input-container">
             {{sol_form.codigo_operadora.label_tag}}
             {{sol_form.codigo_operadora }}
             </div>
         </fieldset>
         <fieldset class='field-autorizacao'>
+            {{sol_form.carater_solicitacao.label_tag}}
             <div class='radio-button'>
-                {{sol_form.carater_solicitacao.label_tag}}
                 {{sol_form.carater_solicitacao}}
             </div>
         </fieldset>
@@ -103,10 +104,10 @@
                 </div>
             
                 <button type="button" id="add-form-btn" class="btn btn-secondary mt-2">Adicionar Procedimento</button>
-                <hr>  
-                <button type="submit" >Executar Solicitação</button>
+                 
+                
         </fieldset> 
-                    
+        <button type="submit" >Executar Solicitação</button> 
                 </form>
 </div>
 {%endblock conteudo%}

@@ -138,5 +138,8 @@ class ItemSolicitacao(models.Model):
 
     def __str__(self):
         return f"{self.procedimento.nome} (Qtd: {self.quantidade})"
+    
+class AnexoSolicitacao(models.Model):
+    anexo = models.FileField(upload_to='anexoautorizacao/')
 
     
