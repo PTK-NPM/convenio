@@ -51,15 +51,19 @@ class SolicitacaoForm(forms.Form):
         })
     )
     carater_solicitacao = forms.ChoiceField(
-        widget = forms.RadioSelect(attrs={'class': 'radio-button-group'}),
+        widget = forms.RadioSelect(attrs={'class': 'radio-button'}),
         label = 'Caráter de Solicitação',
         choices = Solicitacao.CaraterSolicitacao.choices
     )
     
     indicacao = forms.CharField(
         label = 'Indicação Clínica', 
-        max_length = 8, 
-        required = True
+        max_length = 500, 
+        required = True,
+        widget = forms.TextInput(attrs= {
+            'placeholder': 'Digite a indicação clínica',
+            'class' : 'form-input-indicacao'
+    })
     )
 
 
@@ -67,10 +71,16 @@ class ProcedimentoSolicitadoForm(forms.Form):
     codigo_procedimento = forms.CharField(
         label = 'Código do Procedimento',
         max_length= 8,  
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Código do procedimento'
+        })
     )
-    quantidade_procedimento = forms.IntegerField(
+    quantidade = forms.IntegerField(
         label= 'Quantidade',
         min_value = 1,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Quantidade'
+        })
     )
 
 class CustomLoginForm(AuthenticationForm):

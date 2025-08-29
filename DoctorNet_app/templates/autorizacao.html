@@ -2,14 +2,19 @@
 {%block conteudo%}
 {%load static%}
 
+<nav class="navbar">
+    <div class="navbar-logo">
+        <img src="{%static 'DoctorNet_app/doctornetlogo.png'%}">
+    </div>
+</nav>
 
-<div class="form-autorizacao-container">
+<div class="form-autorizacao-container"> 
     <form method="POST" action="" target=_blank>
         {% csrf_token %}
         <fieldset class='field-autorizacao'>
             <h2>Dados do Beneficiário</h2> 
             <div class="input-container">
-                {{sol_form.carteirinha_beneficiario.label_tag}}
+                
                 {{sol_form.carteirinha_beneficiario}}
             </div>
         </fieldset>
@@ -18,32 +23,33 @@
             
                 <h2> Dados do Profissional Solicitante </h2>
                 <div class="input-container">
-                {{sol_form.nome_profissional.label_tag}}
+                
                 {{sol_form.nome_profissional}}
                 </div>
+
             <div class='form-row'>   
-                <div class="input-container1">
-                    {{sol_form.conselho.label_tag}}
+                <div class="form-group conselho">
+                    
                     <div class="select-wrapper">
                         {{sol_form.conselho}}
                     </div>
                 </div>
                 
                 
-                <div class="input-container2">
+                <div class="form-group codigo-conselho">
                 
                 {{sol_form.codigo_conselho}}
                 </div>
                 
-                <div class="input-container1">               
-                    {{sol_form.UF_Conselho.label_tag}}
+                <div class="form-group uf">               
+                    
                     <div class="select-wrapper">  
                         {{sol_form.UF_Conselho}}
                     </div>
                 </div>
                 
-                <div class="input-container1">
-                    {{sol_form.cbos.label_tag}}
+                <div class="form-group cbos">
+                    
                     <div class="select-wrapper">
                         {{sol_form.cbos}}
                     </div>
@@ -58,12 +64,16 @@
             <h2> Dados do Executante </h2>
             <p>
             <div class="input-container">
-            {{sol_form.codigo_operadora.label_tag}}
+            
             {{sol_form.codigo_operadora }}
             </div>
         </fieldset>
         <fieldset class='field-autorizacao'>
-            {{sol_form.carater_solicitacao.label_tag}}
+            <div class="input-container-indicacao">
+            <h2>Indicação Clínica</h2>
+            {{sol_form.indicacao}}
+            </div>
+            <hr class="testhr">
             <div class='radio-button'>
                 {{sol_form.carater_solicitacao}}
             </div>
@@ -74,17 +84,17 @@
             
                 <div id="procedimentos-container">
                     {% for form in formset %}
-                        <div class="procedimento-form form-row align-items-end mb-2">
-                            <div class="col">
-                                {{ form.codigo_procedimento.label_tag }}
+                        <div class="procedimento-form">
+                            
+                                <div class="proc-codigo">
                                 {{ form.codigo_procedimento }}
                                 {{ form.codigo_procedimento.errors }}
-                            </div>
-                            <div class="col">
-                                {{ form.quantidade_procedimento.label_tag }}
-                                {{ form.quantidade_procedimento }}
-                                {{ form.quantidade_procedimento.errors }}
-                            </div>
+                                </div>
+                            
+                                <div class="proc-qtnd">
+                                {{ form.quantidade}}
+                                {{ form.quantidade.errors }}
+                                </div>
                         </div>
                     {% endfor %}
                     
@@ -92,22 +102,22 @@
             
                 <div id="empty-form" style="display: none;">
                     <div class="procedimento-form form-row align-items-end mb-2">
-                        <div class="col">
-                            {{ formset.empty_form.codigo_procedimento.label_tag }}
+                        <div class="proc-codigo">
+                            
                             {{ formset.empty_form.codigo_procedimento }}
                         </div>
-                        <div class="col">
-                            {{ formset.empty_form.quantidade_procedimento.label_tag }}
-                            {{ formset.empty_form.quantidade_procedimento }}
+                        <div class="proc-qntd">
+                            
+                            {{ formset.empty_form.quantidade }}
                         </div>
                     </div>
                 </div>
             
-                <button type="button" id="add-form-btn" class="btn btn-secondary mt-2">Adicionar Procedimento</button>
+                <button type="button" id="add-form-btn" class="btn-procedimento">Adicionar Procedimento</button>
                  
                 
         </fieldset> 
-        <button type="submit" >Executar Solicitação</button> 
+        <button type="submit" class="btn-execute">Executar Solicitação</button> 
                 </form>
 </div>
 {%endblock conteudo%}

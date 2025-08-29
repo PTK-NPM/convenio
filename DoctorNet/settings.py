@@ -121,35 +121,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(BASE_DIR / 'senac-django-credentials.json')
-
-# Backend de armazenamento
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-
-# Nome do seu bucket
-GS_BUCKET_NAME = 'senac-django'
-
-# ID do projeto
-GOOGLE_CLOUD_PROJECT = 'senac-django'
-
-# Para permitir que os arquivos sejam públicos
-GS_DEFAULT_ACL = 'publicRead'
-
-# URLs para arquivos de mídia
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
-MEDIA_ROOT = ''
-
-# Remova o 'query_string' para URLs públicas
-GS_QUERYSTRING_AUTH = False
-
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    }
-}

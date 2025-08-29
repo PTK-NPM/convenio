@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
 body{
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(235, 235, 235);
+  padding-top: 65px;
+}
+h2 {
+  color: #1a4381;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500; /* Um peso "semi-bold" fica ótimo para títulos */
+  /* color: #343a40;  Um cinza escuro é mais suave que o preto puro */
+  font-size: 1.25rem; /* Equivalente a 20px, ajuste conforme necessário */
 }
 
 /* ESTILOS FORMULÁRIO DE LOGIN */
@@ -7,7 +17,6 @@ body{
 .container-login {
     display: flex;
     height: 100vh;
-    background-color: rgb(204, 204, 204);
     justify-content: center;
     align-items: center;
 }
@@ -30,6 +39,7 @@ body{
     height: 30px;
     margin-bottom: 2px;
 }
+
 
 .form-login {
     display: flex;
@@ -58,7 +68,7 @@ body{
 
 .form-autorizacao-container {
     max-width: 800px;  
-    margin: 50px auto; 
+    margin: 25px auto; 
     padding: 32px;
     background-color: #ffffff;
     border-radius: 8px; 
@@ -70,7 +80,7 @@ body{
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 25px; 
-  background-color: rgb(209, 209, 209); 
+  background-color: rgb(235, 235, 235); 
 }
 
 .field-autorizacao:hover {
@@ -78,13 +88,12 @@ body{
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 25px; 
-  background-color: rgb(209, 209, 209); 
+  background-color: rgb(235, 235, 235); 
 }
 
 .form-row {
     display: flex;
     gap: 20px; /* Espaço entre os campos */
-    margin-bottom: 16px; /* Espaço abaixo da linha */
 }
 
 .input-container {
@@ -95,65 +104,13 @@ body{
   flex-direction: column; 
 }
 
-/* ESTILIZAÇÃO DO FIELD DE PROFISSIONAL SOLICITANTE */
-
-.input-container1 {
-    position: relative;
-    margin-top: 3px;
-    flex: 2; 
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 3px;
-    padding: 5px;
-    box-sizing: border-box;
-    height: 45px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid gray;
-  }
-
-.input-container1 select{
-    border-radius: 3px;
-    
-    box-sizing:border-box;
-}
-
-.input-container2 {
-    position: relative;
-    margin-top: 2px;
-    flex: 9; 
-    display: flex;
-    flex-direction: column; 
-  }
-
-  .input-container2 input{
-    width: 100%;
-    height: 40px;
-    
-  }
-
-  
-
 .input-container input {
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 12px;
   width: 100%;
-  font-size: 10px;
   height: 50px;
-  box-sizing: border-box; /* Garante que padding não afete a largura total */
-}
-
-/* O rótulo que "corta" a borda */
-.input-container label {
-  position: absolute;
-  top: 1px; 
-  left: 10px; 
-  background-color: #fff;
-  padding: 0 5px;
-  font-size: 14px;
-  color: #555;
+  box-sizing: border-box;
 }
 
 .input-container input:focus {
@@ -161,58 +118,248 @@ body{
   border-color: #007bff;
 }
 
-/* ESTILIZAÇÃO DO SELECT */
-/* .select-wrapper {
-    position: relative;
-} */
 
-/* A seta customizada */
-.select-wrapper:after {
-    content: '▼';
-    font-size: 12px;
-    color: #718096;
-    position: absolute;
-    right: 19px;
-    top: 75%;
-    transform: translateY(-50%);
-    pointer-events: none; /* Permite que o clique passe através da seta e atinja o select */
+.input-container-indicacao {
+  position: relative;
+  margin-top: 2px;
+  flex: 2; 
+  display: flex;
+  flex-direction: column;
+}
+.input-container-indicacao input{
+  height: 70px; 
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 12px;
+}
+.input-container-indicacao input:focus{
+  outline: none;
+  border-color: #007bff
+}
+/* ESTILIZAÇÃO DO FIELD DE PROFISSIONAL SOLICITANTE */
+.codigo-conselho input, .form-row select{
+    width: 100%; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 35px;
+}
+.codigo-conselho input:focus, .form-row select:focus{
+  outline: none;
+  border-color: #007bff
+}
+.form-row select{
+  height: 52px;
+}
+.codigo-conselho {
+  flex-grow: 1;
+}
+.form-row .form-group {
+  margin-top: 3px;
+  display: flex;
 }
 
-/* REMOVE A APARÊNCIA PADRÃO DO SELECT */
-select {
-    -webkit-appearance: none; /* Remove a seta padrão no Chrome/Safari */
-    -moz-appearance: none;    /* Remove a seta padrão no Firefox */
-    appearance: none;         /* Remove a seta padrão em navegadores modernos */
-    padding-right: 30px;      /* Adiciona espaço à direita para nossa nova seta não sobrepor o texto */
-}
-
-/* ESTILIZAÇÃO DO RADIO BUTTON */
-
-input[type="radio"] {
+/* ESTILIZAÇÃO RADIO BUTTON CARATER-SOLICITAÇÃO */
+.radio-button input[type="radio"] {
     display: none;
+}
+.radio-button {
+  display: flex;
+  align-items: center; 
+  gap: 1px;         
 }
 
 .radio-button label {
-    display: inline-block; 
-    padding: 12px 20px;   
-    margin: 5px;          
+    display: block;
+    padding: 12px 20px;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid #1a4381;
+    color: #1a4381;   
     
-    background-color: #e9ecef; 
-    color: #495057;           
-    border: 1px solid #ced4da; 
     border-radius: 4px;       
-    
     text-align: center;
     cursor: pointer;          
     transition: all 0.2s ease-in-out; 
 }
 
 .radio-button label:hover {
-    background-color: #dde1e5;
+    background-color: #1a4381; 
+    color: white;           
+    border: 1px solid #ced4da;
 }
 
-input[type="radio"]:checked + label {
-    background-color: #0d6efd; 
-    color: white;             
-    border-color: #0d6efd;      
+.radio-button label:has(input[type="radio"]:checked){
+    background-color: #1a4381; 
+    color: white;           
+    border: 1px solid #ced4da;
+    border-radius: 4px; 
+}
+.testhr{
+  border:1px solid #1a4381;
+}
+
+/* ESTILIZAÇÃO PROCEDIMENTO FIELD */
+.procedimento-form{
+  display: flex;
+  gap: 10px;
+}
+.procedimento-form input{
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px;
+}
+.procedimento-form input:focus{
+  outline: none;
+  border-color: #007bff
+}
+.proc-codigo{
+  width: 80%;
+  margin-bottom: 10px;
+}
+.proc-codigo input{
+  width: 96%;
+}
+
+.btn-procedimento {
+  display: flex;
+  background-color: #1a4381;
+  color: white; 
+  justify-self: flex-end;
+  width: 24.9%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  justify-content: center;
+}
+.btn-procedimento:hover {
+  background-color: #3568b5;
+}
+.btn-execute {
+  display: flex;
+  background-color: #1a4381;
+  color: white; 
+  width: 22.3%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+  font-size: 14px;
+}
+.btn-execute:hover{
+  background-color: #3568b5;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background-color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    padding: 10px 40px; 
+    position: fixed;   
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;     
+    display: flex;
+    align-items: center;
+    height: 65px;      
+    box-sizing: border-box;
+}
+
+.navbar-logo img {
+    height: 45px;      
+    width: auto;
+}
+
+
+/* ESTILIZAÇÃO PÁGINA DE DETALHES */
+.details-container {
+    max-width: 800px;
+    margin: 25px auto;
+    padding: 32px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #1a4381;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.details-header h2 {
+    margin: 0;
+}
+
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.status-autorizada {
+    background-color: #28a745; /* Verde para status 'Autorizada' */
+}
+
+.status-pendente {
+    background-color: #ffc107; /* Amarelo para status 'Pendente' */
+}
+
+.status-negada {
+    background-color: #dc3545; /* Vermelho para status 'Negada' */
+}
+
+
+.details-section {
+    margin-bottom: 30px;
+}
+
+.details-section h3 {
+    color: #1a4381;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    border-left: 4px solid #1a4381;
+    padding-left: 10px;
+}
+
+.detail-item {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #343a40;
+}
+
+.detail-item strong {
+    color: #495057;
+    display: inline-block;
+    min-width: 180px; /* Alinha os valores */
+}
+
+/* Tabela de Procedimentos */
+.procedimentos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.procedimentos-table th, .procedimentos-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+}
+
+.procedimentos-table th {
+    background-color: rgb(235, 235, 235);
+    color: #1a4381;
+    font-weight: 600;
 }

@@ -1,7 +1,67 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
+{% block conteudo %}
+{% load static %}
 
-{%block conteudo%}
-{{detalhes_autorizada.paciente.nome}}
-{{detalhes_autorizada.paciente.carteirinha}}
-{{detalhes_autorizada.profissional_solicitante.tipo_conselho}}
-{%endblock conteudo%}
+<nav class="navbar">
+    <div class="navbar-logo">
+        <img src="{%static 'DoctorNet_app/doctornetlogo.png'%}" alt="Logo da Empresa">
+    </div>
+</nav>
+
+<div class="details-container">
+    <div class="details-header">
+        <h2>Detalhes da Solicitação #{{ detalhes_autorizada.id }}</h2>
+        <span class="status-badge status-autorizada">{{ detalhes_autorizada.get_status_display }}</span>
+    </div>
+
+    <div class="details-section">
+        <h3>Dados do Beneficiário</h3>
+        <div class="detail-item">
+            <strong>Nome do Paciente:</strong> {{ detalhes_autorizada.paciente.nome }}
+        </div>
+        <div class="detail-item">
+            <strong>Número da Carteirinha:</strong> {{ detalhes_autorizada.paciente.carteirinha }}
+        </div>
+    </div>
+
+    <div class="details-section">
+        <h3>Profissional Solicitante</h3>
+        <div class="detail-item">
+            <strong>Nome do Profissional:</strong> {{ detalhes_autorizada.profissional_solicitante.nome_profissional }}
+        </div>
+        <div class="detail-item">
+            <strong>Conselho ({{ detalhes_autorizada.profissional_solicitante.tipo_conselho }}):</strong> {{ detalhes_autorizada.profissional_solicitante.codigo }}
+        </div>
+    </div>
+
+    <div class="details-section">
+        <h3>Dados da Solicitação</h3>
+        <div class="detail-item">
+            <strong>Caráter da Solicitação:</strong> {{ detalhes_autorizada.get_carater_solicitacao_display }}
+        </div>
+    </div>
+
+    <div class="details-section">
+        <h3>Procedimentos Solicitados</h3>
+        <table class="procedimentos-table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome do Procedimento</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in detalhes_autorizada.itens.all %}
+                <tr>
+                    <td>{{ item.procedimento.codigo_procedimento }}</td>
+                    <td>{{ item.procedimento.nome }}</td>
+                    <td>{{ item.quantidade }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock conteudo %}
