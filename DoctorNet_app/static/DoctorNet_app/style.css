@@ -7,9 +7,8 @@ body{
 h2 {
   color: #1a4381;
   font-family: 'Poppins', sans-serif;
-  font-weight: 500; /* Um peso "semi-bold" fica ótimo para títulos */
-  /* color: #343a40;  Um cinza escuro é mais suave que o preto puro */
-  font-size: 1.25rem; /* Equivalente a 20px, ajuste conforme necessário */
+  font-weight: 500; 
+  font-size: 1.25rem;
 }
 
 /* ESTILOS FORMULÁRIO DE LOGIN */
@@ -93,7 +92,7 @@ h2 {
 
 .form-row {
     display: flex;
-    gap: 20px; /* Espaço entre os campos */
+    gap: 20px;
 }
 
 .input-container {
@@ -308,15 +307,17 @@ h2 {
 }
 
 .status-autorizada {
-    background-color: #28a745; /* Verde para status 'Autorizada' */
+    background-color: #28a745; 
 }
 
-.status-pendente {
-    background-color: #ffc107; /* Amarelo para status 'Pendente' */
+.status-analise {
+    background-color: #ffc107; 
 }
-
+.status-pendente{
+  background-color: #b65800;
+}
 .status-negada {
-    background-color: #dc3545; /* Vermelho para status 'Negada' */
+    background-color: #dc3545; 
 }
 
 
@@ -342,7 +343,7 @@ h2 {
 .detail-item strong {
     color: #495057;
     display: inline-block;
-    min-width: 180px; /* Alinha os valores */
+    min-width: 180px; 
 }
 
 /* Tabela de Procedimentos */

@@ -112,6 +112,7 @@ class Solicitacao(models.Model):
         APROVADO = 'APV', 'Pedido Aprovado'
         ANALISE = 'ANA', 'Em Análise'
         PENDENTE = 'PEN', 'Pendência'
+        NEGADO = 'NEV', 'Negado'
     status = models.CharField('Status do Pedido', max_length = 3, choices = Status.choices)
     data_solicitacao = models.DateField(auto_now_add = True)
     indicacao = models.CharField('Indicação Clínica', max_length=500)
