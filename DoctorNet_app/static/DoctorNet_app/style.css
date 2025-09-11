@@ -364,3 +364,19 @@ h2 {
     color: #1a4381;
     font-weight: 600;
 }
+
+/* ESTILIZAÇÃO MARCADORES */
+
+.contador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  color:rgb(235, 235, 235); 
+  margin-top: 20px;
+  background-color: #1a4381;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  font-weight: bold;
+}

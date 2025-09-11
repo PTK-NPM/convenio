@@ -17,6 +17,9 @@
                 
                 {{sol_form.carteirinha_beneficiario}}
             </div>
+            <div class="contador">
+                1
+            </div>
         </fieldset>
         
         <fieldset class='field-autorizacao'>
@@ -28,32 +31,30 @@
                 </div>
 
             <div class='form-row'>   
-                <div class="form-group conselho">
+                <div class="form-group">
                     
-                    <div class="select-wrapper">
-                        {{sol_form.conselho}}
-                    </div>
+                    {{sol_form.conselho}}
+
                 </div>
                 
                 
                 <div class="form-group codigo-conselho">
                 
-                {{sol_form.codigo_conselho}}
+                    {{sol_form.codigo_conselho}}
                 </div>
                 
-                <div class="form-group uf">               
-                    
-                    <div class="select-wrapper">  
-                        {{sol_form.UF_Conselho}}
-                    </div>
+                <div class="form-group">               
+  
+                    {{sol_form.UF_Conselho}}
                 </div>
                 
-                <div class="form-group cbos">
+                <div class="form-group">
                     
-                    <div class="select-wrapper">
                         {{sol_form.cbos}}
-                    </div>
                 </div>
+            </div>
+            <div class="contador">
+                2
             </div>
             
             
@@ -67,6 +68,9 @@
             
             {{sol_form.codigo_operadora }}
             </div>
+            <div class="contador">
+                3
+            </div>
         </fieldset>
         <fieldset class='field-autorizacao'>
             <div class="input-container-indicacao">
@@ -76,6 +80,9 @@
             <hr class="testhr">
             <div class='radio-button'>
                 {{sol_form.carater_solicitacao}}
+            </div>
+            <div class="contador">
+                4
             </div>
         </fieldset>
         <fieldset class='field-autorizacao'>
@@ -115,7 +122,9 @@
             
                 <button type="button" id="add-form-btn" class="btn-procedimento">Adicionar Procedimento</button>
                  
-                
+                <div class="contador">
+                5
+                </div>
         </fieldset> 
         <button type="submit" class="btn-execute">Executar Solicitação</button> 
                 </form>
