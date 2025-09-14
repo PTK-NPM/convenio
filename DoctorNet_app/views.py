@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import SolicitacaoForm, CustomLoginForm, ProcedimentoSolicitadoForm
-from .models import Beneficiario, Solicitacao, Executante, Procedimento, ProfissionalSolicitante, ItemSolicitacao
+from .models import Beneficiario, Solicitacao, Executante, Procedimento, ProfissionalSolicitante, ItemSolicitacao, AnexoSolicitacao
 
 
 def loginv(request):
@@ -38,7 +38,7 @@ ProcedimentoFormSet = formset_factory(ProcedimentoSolicitadoForm, extra=1)
 @login_required
 def sol_autorizacao(request):
     if request.method == 'POST':
-        form = SolicitacaoForm(request.POST)
+        form = SolicitacaoForm(request.POST, request.FILES)
         formset= ProcedimentoFormSet(request.POST, prefix='procedimentos')
         if form.is_valid() and formset.is_valid():
             numero_carteirinha = form.cleaned_data['carteirinha_beneficiario']
@@ -66,6 +66,9 @@ def sol_autorizacao(request):
                 carater_solicitacao = form.cleaned_data['carater_solicitacao'],
                 indicacao = form.cleaned_data['indicacao']
             )
+                arquivos = request.FILES.getlist('anexos')
+                for arquivo in arquivos:
+                    AnexoSolicitacao.objects.create(solicitacao=nova_solicitacao, anexo=arquivo)
                 for form_procedimento in formset:
                     if form_procedimento.has_changed():
                         procedimento_codigo = form_procedimento.cleaned_data['codigo_procedimento']
@@ -77,7 +80,8 @@ def sol_autorizacao(request):
                             ItemSolicitacao.objects.create(
                                 solicitacao=nova_solicitacao,
                                 procedimento=procedimento_encontrado,
-                                quantidade=quantidade_solicitada)
+                                quantidade=quantidade_solicitada
+                                )
                             
                         except Procedimento.DoesNotExist:
                                 form_procedimento.add_error('codigo_procedimento', 'Código de procedimento inválido.')

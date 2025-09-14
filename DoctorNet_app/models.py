@@ -131,6 +131,10 @@ class Solicitacao(models.Model):
     
     def __str__(self):
         return f'{self.procedimento_solicitado} - {self.status}'
+    
+class AnexoSolicitacao(models.Model):
+    anexo = models.FileField(upload_to='anexoautorizacao/')
+    solicitacao = models.ForeignKey(Solicitacao, on_delete=models.CASCADE)
 
 class ItemSolicitacao(models.Model):
     solicitacao = models.ForeignKey(Solicitacao, related_name='itens', on_delete=models.CASCADE)
@@ -140,7 +144,5 @@ class ItemSolicitacao(models.Model):
     def __str__(self):
         return f"{self.procedimento.nome} (Qtd: {self.quantidade})"
     
-class AnexoSolicitacao(models.Model):
-    anexo = models.FileField(upload_to='anexoautorizacao/')
 
     

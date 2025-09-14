@@ -65,6 +65,9 @@ class SolicitacaoForm(forms.Form):
             'class' : 'form-input-indicacao'
     })
     )
+    anexos = forms.FileField(
+        required = False,
+        widget=forms.FileInput(attrs={'multiple': True}))
 
 
 class ProcedimentoSolicitadoForm(forms.Form):
