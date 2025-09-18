@@ -381,3 +381,24 @@ h2 {
   border-radius: 50%;
   font-weight: bold;
 }
+
+input[type="file"]{
+  display: none;
+}
+.btn-anexo{
+  background-color: rgb(235, 235, 235);
+  color: #1a4381;
+  border:1px solid  #1a4381;
+  border-radius: 2px;
+  display: flex;
+  width: 140px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.btn-anexo:hover{
+  background-color: #1a4381;
+  color: rgb(235, 235, 235);
+}

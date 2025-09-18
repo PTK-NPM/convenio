@@ -2,6 +2,9 @@ from django import forms
 from .models import Solicitacao, ProfissionalSolicitante, CBOs
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
+class MultipleFileInput(forms.FileInput):
+    allow_multiple_selected = True
+
 class SolicitacaoForm(forms.Form):
     carteirinha_beneficiario = forms.CharField(
         label = 'Número da Carteirinha do Beneficiário', 
@@ -67,7 +70,9 @@ class SolicitacaoForm(forms.Form):
     )
     anexos = forms.FileField(
         required = False,
-        widget=forms.FileInput(attrs={'multiple': True}))
+        widget=MultipleFileInput(attrs={'multiple': True}),
+        label = 'Envie Arquivos'
+        )
 
 
 class ProcedimentoSolicitadoForm(forms.Form):

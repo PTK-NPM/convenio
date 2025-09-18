@@ -77,10 +77,17 @@
             <h2>Indicação Clínica</h2>
             {{sol_form.indicacao}}
             </div>
-            <hr class="testhr">
+            <br>
             <div class='radio-button'>
                 {{sol_form.carater_solicitacao}}
             </div>
+            <hr class="testhr">
+            <div class="anexos">
+            <h2>Anexos</h2>
+            <label for="{{sol_form.anexos.id_for_label}}" class="btn-anexo">Enviar Arquivos</label>
+            {{sol_form.anexos}}
+            </div>
+            
             <div class="contador">
                 4
             </div>
