@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'DoctorNet_app'
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# --- Configurações do Google Cloud Storage ---
+
+# Caminho para o seu arquivo de credenciais JSON
+
+import os
+GOOGLE_APPLICATION_CREDENTIALS = os.path.join(BASE_DIR, 'doctorapp-473218-d8e79718fab8.json')
+
+# Define o backend de armazenamento padrão para uploads de mídia
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+# O nome do bucket que você criou no GCP
+GS_BUCKET_NAME = 'doctornetapp-solicitacoes-anexo'
+
+# (Opcional) Para evitar que arquivos com o mesmo nome sejam sobrescritos
+GS_FILE_OVERWRITE = False
+
+# (Opcional) Define uma ACL padrão para os arquivos. 'publicRead' os torna públicos.
+# Para arquivos sensíveis, considere 'private' e use URLs assinadas para acesso.
+GS_DEFAULT_ACL = 'publicRead'

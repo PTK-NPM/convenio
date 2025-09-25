@@ -133,7 +133,7 @@ class Solicitacao(models.Model):
         return f'{self.procedimento_solicitado} - {self.status}'
     
 class AnexoSolicitacao(models.Model):
-    anexo = models.FileField(upload_to='anexoautorizacao/')
+    anexo = models.FileField(upload_to='solicitacoes/anexos/%Y/%m/%d/')
     solicitacao = models.ForeignKey(Solicitacao, on_delete=models.CASCADE)
 
 class ItemSolicitacao(models.Model):
