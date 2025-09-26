@@ -130,7 +130,7 @@ class Solicitacao(models.Model):
                 super().save(update_fields=['numero_guia'])
     
     def __str__(self):
-        return f'{self.procedimento_solicitado} - {self.status}'
+        return f'Solicitação para {self.paciente} (Guia: {self.numero_guia})'
     
 class AnexoSolicitacao(models.Model):
     anexo = models.FileField(upload_to='solicitacoes/anexos/%Y/%m/%d/')
